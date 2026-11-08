@@ -1,4 +1,10 @@
-/* Global styles */
+/* =====================================
+   BETWEEN THE COVERS
+   Main Stylesheet
+===================================== */
+
+/* GLOBAL STYLES */
+
 * {
   box-sizing: border-box;
 }
@@ -11,7 +17,8 @@ body {
   line-height: 1.6;
 }
 
-/* Header */
+/* HEADER */
+
 header {
   background-color: #203f35;
   color: #fff7ea;
@@ -25,11 +32,12 @@ header h1 {
 }
 
 header p {
-  margin-bottom: 0;
+  margin: 15px 0 0;
   color: #e5ddce;
 }
 
-/* Main layout */
+/* MAIN PAGE LAYOUT */
+
 main {
   width: 90%;
   max-width: 950px;
@@ -38,7 +46,7 @@ main {
 
 section {
   background-color: white;
-  padding: 25px;
+  padding: 30px;
   margin-bottom: 25px;
   border-radius: 10px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
@@ -47,14 +55,20 @@ section {
 h2 {
   color: #203f35;
   margin-top: 0;
+  font-size: 1.6rem;
 }
 
-/* Search form */
+/* SEARCH FORM */
+
 form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px;
+}
+
+label {
+  font-weight: bold;
 }
 
 input {
@@ -64,6 +78,11 @@ input {
   border: 1px solid #d5c9b7;
   border-radius: 5px;
   font-size: 1rem;
+}
+
+input:focus {
+  outline: 2px solid #345d4e;
+  outline-offset: 2px;
 }
 
 button {
@@ -80,52 +99,156 @@ button:hover {
   background-color: #345d4e;
 }
 
-/* Dynamic content containers */
+button:focus-visible {
+  outline: 2px solid #d6b778;
+  outline-offset: 3px;
+}
+
+/* STATUS MESSAGE */
+
+#status-message {
+  color: #746e63;
+  margin-bottom: 20px;
+}
+
+/* DYNAMIC RESULTS CONTAINERS */
+
 #book-results,
 #author-results {
   margin-top: 20px;
 }
 
-#status-message {
-  color: #746e63;
+/* BOOK AND AUTHOR CARDS */
+
+.book-card,
+.author-card {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 25px;
+  align-items: start;
 }
 
-/* Footer */
+/* BOOK COVERS AND AUTHOR PORTRAITS */
+
+.book-card img,
+.author-card img {
+  width: 160px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+}
+
+/* BOOK AND AUTHOR TEXT CONTAINERS */
+
+.book-info,
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* BOOK AND AUTHOR TITLES */
+
+.book-info h3,
+.author-info h3 {
+  color: #203f35;
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.4;
+}
+
+/* BOOK AND AUTHOR PARAGRAPHS */
+
+.book-info p,
+.author-info p {
+  margin: 0;
+  line-height: 1.8;
+  overflow-wrap: break-word;
+}
+
+/* AUTHOR BIOGRAPHY */
+
+.author-info p {
+  max-width: 650px;
+}
+
+/* WHEN A BOOK OR AUTHOR HAS NO IMAGE */
+
+.book-card:not(:has(img)),
+.author-card:not(:has(img)) {
+  grid-template-columns: 1fr;
+}
+
+/* FOOTER */
+
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 25px 20px;
   color: #746e63;
   font-size: 0.9rem;
 }
 
-/* Book and author result cards */
-.book-card,
-.author-card {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 20px;
-}
+/* =====================================
+   RESPONSIVE DESIGN
+===================================== */
 
-.book-card img,
-.author-card img {
-  max-width: 160px;
-  height: auto;
-  border-radius: 5px;
-}
+@media (max-width: 600px) {
+  header {
+    padding: 35px 15px;
+  }
 
-.book-card h3,
-.author-card h3 {
-  width: 100%;
-  color: #203f35;
-  margin-bottom: 0;
-}
+  header h1 {
+    font-size: 2rem;
+  }
 
-.book-card p,
-.author-card p {
-  margin-top: 0;
-}
+  main {
+    width: 94%;
+    margin: 20px auto;
+  }
 
-.author-card p {
-  line-height: 1.8;
+  section {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  input {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .book-card,
+  .author-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .book-card img,
+  .author-card img {
+    width: 140px;
+  }
+
+  .book-info,
+  .author-info {
+    width: 100%;
+  }
+
+  .book-info h3,
+  .author-info h3 {
+    font-size: 1.25rem;
+  }
 }
