@@ -1,6 +1,7 @@
 "use strict";
 
 import { getBookData } from "./api.js";
+import { saveBook, getSavedBook } from "./storage.js";
 
 (() => {
   const bookResults = document.querySelector("#book-results");
@@ -66,17 +67,32 @@ import { getBookData } from "./api.js";
   };
 
   // Fetch the data and display it
+
   const loadBook = (title) => {
     statusMessage.textContent = "Searching for your book...";
 
-    // Clear previous results immediately
     bookResults.replaceChildren();
     authorResults.replaceChildren();
 
+    // Check localStorage first
+    const savedData = getSavedBook(title);
+
+    if (savedData) {
+      displayBook(savedData.book);
+      displayAuthor(savedData.author);
+
+      statusMessage.textContent = "Book found! (Saved result)";
+      return;
+    }
+
+    // Fetch from both APIs if no saved result exists
     getBookData(title)
       .then((data) => {
         displayBook(data.book);
         displayAuthor(data.author);
+
+        // Save the successful result
+        saveBook(title, data);
 
         statusMessage.textContent = "Book found!";
       })
