@@ -9,6 +9,7 @@ import { saveBook, getSavedBook } from "./storage.js";
   const statusMessage = document.querySelector("#status-message");
   const searchForm = document.querySelector("#book-form");
   const searchInput = document.querySelector("#book-search");
+  let searchCount = 0;
 
   // Create and display the book information
   const displayBook = (book) => {
@@ -69,12 +70,14 @@ import { saveBook, getSavedBook } from "./storage.js";
   // Fetch the data and display it
 
   const loadBook = (title) => {
+    // Assign a unique number to this search
+    const currentSearch = ++searchCount;
+
     statusMessage.textContent = "Searching for your book...";
 
     bookResults.replaceChildren();
     authorResults.replaceChildren();
 
-    // Check localStorage first
     const savedData = getSavedBook(title);
 
     if (savedData) {
@@ -85,18 +88,26 @@ import { saveBook, getSavedBook } from "./storage.js";
       return;
     }
 
-    // Fetch from both APIs if no saved result exists
     getBookData(title)
       .then((data) => {
+        // Ignore results from an older search
+        if (currentSearch !== searchCount) {
+          return;
+        }
+
         displayBook(data.book);
         displayAuthor(data.author);
 
-        // Save the successful result
         saveBook(title, data);
 
         statusMessage.textContent = "Book found!";
       })
       .catch((error) => {
+        // Ignore errors from an older search
+        if (currentSearch !== searchCount) {
+          return;
+        }
+
         console.error("Book search failed:", error);
 
         if (error.message === "No book found with that title.") {
