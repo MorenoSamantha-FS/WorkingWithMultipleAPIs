@@ -5,5 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Working with Multiple APIs</title>
   </head>
-  <body></body>
+  <body>
+   
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Between the Covers</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" type="module" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Between the Covers</h1>
+        <p>Discover the story behind the story.</p>
+    </header>
+
+    <main>
+        <section id="search-section">
+            <h2>Find a Book</h2>
+
+            <form id="book-form">
+                <label for="book-search">Book Title</label>
+                <input
+                    type="search"
+                    id="book-search"
+                    placeholder="Enter a book title..."
+                    required
+                >
+                <button type="submit">Search</button>
+            </form>
+        </section>
+
+        <section id="results-section" aria-live="polite">
+            <h2>Book Discovery</h2>
+            <p id="status-message">
+                Your next literary adventure awaits!
+            </p>
+            <div id="book-results"></div>
+        </section>
+
+        <section id="author-section">
+            <h2>Behind the Author</h2>
+            <div id="author-results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Book data from Open Library.
+           Author information from Wikipedia.</p>
+    </footer>
+</body>
+</html>
+
+  </body>
 </html>
