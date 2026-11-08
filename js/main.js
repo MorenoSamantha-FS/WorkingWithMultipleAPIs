@@ -97,7 +97,17 @@ import { saveBook, getSavedBook } from "./storage.js";
         statusMessage.textContent = "Book found!";
       })
       .catch((error) => {
-        statusMessage.textContent = `Unable to load book information: ${error.message}`;
+        console.error("Book search failed:", error);
+
+        if (error.message === "No book found with that title.") {
+          statusMessage.textContent =
+            "No books found. Please try another title.";
+        } else if (error.message.startsWith("Wikipedia error: 404")) {
+          statusMessage.textContent =
+            "We found a book, but could not find information about its author. Try another title.";
+        } else {
+          statusMessage.textContent = "Something went wrong. Please try again.";
+        }
       });
   };
 
