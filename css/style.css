@@ -1,0 +1,99 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f7f2e8;
+  color: #27362f;
+  font-family: Georgia, serif;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #203f35;
+  color: #fff7ea;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+header p {
+  margin-bottom: 0;
+  color: #e5ddce;
+}
+
+/* Main layout */
+main {
+  width: 90%;
+  max-width: 950px;
+  margin: 35px auto;
+}
+
+section {
+  background-color: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+  color: #203f35;
+  margin-top: 0;
+}
+
+/* Search form */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+input {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px;
+  border: 1px solid #d5c9b7;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #203f35;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #345d4e;
+}
+
+/* Dynamic content containers */
+#book-results,
+#author-results {
+  margin-top: 20px;
+}
+
+#status-message {
+  color: #746e63;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #746e63;
+  font-size: 0.9rem;
+}
