@@ -97,3 +97,35 @@ footer {
   color: #746e63;
   font-size: 0.9rem;
 }
+
+/* Book and author result cards */
+.book-card,
+.author-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.book-card img,
+.author-card img {
+  max-width: 160px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.book-card h3,
+.author-card h3 {
+  width: 100%;
+  color: #203f35;
+  margin-bottom: 0;
+}
+
+.book-card p,
+.author-card p {
+  margin-top: 0;
+}
+
+.author-card p {
+  line-height: 1.8;
+}
