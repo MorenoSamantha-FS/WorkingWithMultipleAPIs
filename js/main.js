@@ -6,6 +6,8 @@ import { getBookData } from "./api.js";
   const bookResults = document.querySelector("#book-results");
   const authorResults = document.querySelector("#author-results");
   const statusMessage = document.querySelector("#status-message");
+  const searchForm = document.querySelector("#book-form");
+  const searchInput = document.querySelector("#book-search");
 
   // Create and display the book information
   const displayBook = (book) => {
@@ -67,12 +69,12 @@ import { getBookData } from "./api.js";
   const loadBook = (title) => {
     statusMessage.textContent = "Searching for your book...";
 
+    // Clear previous results immediately
+    bookResults.replaceChildren();
+    authorResults.replaceChildren();
+
     getBookData(title)
       .then((data) => {
-        // Clear previous results
-        bookResults.replaceChildren();
-        authorResults.replaceChildren();
-
         displayBook(data.book);
         displayAuthor(data.author);
 
@@ -82,6 +84,17 @@ import { getBookData } from "./api.js";
         statusMessage.textContent = `Unable to load book information: ${error.message}`;
       });
   };
+
+  // Handle form submission
+  searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const searchTitle = searchInput.value.trim();
+
+    if (searchTitle) {
+      loadBook(searchTitle);
+    }
+  });
 
   // Load a featured book automatically
   loadBook("Frankenstein");
